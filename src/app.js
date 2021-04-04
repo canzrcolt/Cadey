@@ -1,9 +1,11 @@
 const express = require("express");
-
+const path = require("path");
+const router = express.Router();
 const app = express();
 
+app.use(express.static("assets"));
 app.get("/", (req, res) => {
-  res.send("<h1>My Lovely Node App</>");
+  res.sendFile(path.join(__dirname + "/index.html"));
 });
 
 app.listen(5000, () => {
