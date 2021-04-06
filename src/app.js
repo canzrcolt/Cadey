@@ -1,7 +1,26 @@
 const express = require("express");
 const path = require("path");
-const router = express.Router();
 const app = express();
+const dotenv = require("dotenv");
+const mongoose = require("mongoose");
+
+//Import Routes
+const authRoute = require("./routes/auth");
+
+dotenv.config();
+
+//connect to db
+mongoose.connect(
+  process.env.DB_CONNECT,
+  { useNewUrlParser: true, useUnifiedTopology: true },
+  () => console.log("connected to db")
+);
+
+//Middleware
+app.use(express.json());
+
+//Route Middlewares
+app.use("/api/user", authRoute);
 
 app.use(express.static("assets"));
 app.get("/", (req, res) => {
