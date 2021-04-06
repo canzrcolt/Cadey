@@ -3,6 +3,7 @@ const path = require("path");
 const app = express();
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
+const validation = require("@hapi/joi");
 
 //Import Routes
 const authRoute = require("./routes/auth");
